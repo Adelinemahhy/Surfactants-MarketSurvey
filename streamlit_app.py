@@ -3,7 +3,7 @@ import os
 
 # 1. PAGE SETUP
 st.set_page_config(
-    page_title="KLK Market Survey", 
+    page_title="Market Survey", 
     page_icon="icon.png", 
     layout="centered"
 )
@@ -31,10 +31,10 @@ st.markdown("""
         margin-left: 20px;
     }
     .main-title {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', Aptos;
         color: #FFFFFF;
         text-align: center;
-        font-size: 36px;
+        font-size: 70px;
         font-weight: 800;
         letter-spacing: 1px;
         margin-top: 20px;
@@ -51,7 +51,7 @@ st.markdown("""
         background-color: #D1DED8 !important; /* Soft Light Grey-Green from your draft */
         color: #065F46 !important; /* Text color matches background */
         font-family: 'Poppins', sans-serif !important;
-        font-size: 22px !important;
+        font-size: 70px !important;
         font-weight: 700 !important;
         letter-spacing: 1px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -141,10 +141,6 @@ elif st.session_state.page == 'capture':
             
         with st.expander("➕ Extra Angle"):
             photo3 = st.camera_input("Side View")
-
-        st.subheader("📝 Step 2: Info")
-        brand = st.text_input("Brand Name")
-        notes = st.text_area("Observations")
 
         if st.button("🚀 SUBMIT DATA"):
             st.balloons()
