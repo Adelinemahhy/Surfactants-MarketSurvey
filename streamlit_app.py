@@ -4,13 +4,25 @@ import base64
 
 st.set_page_config(
     page_title="KLK Market Survey",
-    page_icon="KLKOLEO Logo",
+    page_icon="KLK_Oleo_Logo.png",
     layout="centered"
 )
 
 def img_to_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
+
+# Inject PWA tags so "Add to Homescreen" uses the correct icon & title
+if os.path.exists("KLK_Oleo_Logo.png"):
+    _icon_b64 = img_to_base64("KLK_Oleo_Logo.png")
+    st.markdown(f"""
+        <link rel="manifest" href="manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="KLK Survey">
+        <link rel="apple-touch-icon" href="data:image/png;base64,{_icon_b64}">
+        <meta name="theme-color" content="#065F46">
+    """, unsafe_allow_html=True)
 
 st.markdown("""
     <style>
