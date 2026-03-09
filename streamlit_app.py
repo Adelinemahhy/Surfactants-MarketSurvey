@@ -4,7 +4,7 @@ import base64
 
 st.set_page_config(
     page_title="KLK Market Survey",
-    page_icon="KLK Oleo Logo.png",
+    page_icon="KLKOLEO Logo",
     layout="centered"
 )
 
