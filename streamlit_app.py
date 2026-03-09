@@ -1,38 +1,51 @@
 import streamlit as st
 
-# 1. Page Configuration
-st.set_page_config(page_title="KLK Market Survey", page_icon="🧪")
+# Setup for Mobile View
+st.set_page_config(page_title="KLK Survey", layout="centered")
 
-st.title("🧪 KLK OLEO Market Survey")
-st.info("Internship Project: Automated Product Data Entry")
+# Custom UI for Mobile
+st.markdown("""
+    <style>
+    /* Make buttons bigger for thumb tapping */
+    .stButton>button {
+        width: 100%;
+        height: 3em;
+        font-size: 20px !important;
+        border-radius: 10px;
+    }
+    /* Reduce padding for small screens */
+    .block-container { padding-top: 1rem; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# 2. Main Categories
-main_category = st.selectbox("Select Business Segment", ["Personal Care", "Home Care", "Others"])
+st.title("🧪 KLK OLEO Survey")
 
-# 3. Sub-categories
-sub_category = ""
-if main_category == "Personal Care":
-    sub_category = st.radio("Product Type", ["Shampoo", "Body Wash", "Hand Wash"])
-elif main_category == "Home Care":
-    sub_category = st.radio("Product Type", ["Liquid Detergent", "Powder Detergent", "Dishwash Liquid"])
-else:
-    sub_category = st.text_input("Specify Product (e.g., Dry Shampoo)")
+# Use Expander to save vertical space on mobile
+with st.expander("📌 STEP 1: Select Category", expanded=True):
+    category = st.radio("Business Segment", ["Personal Care", "Home Care", "Others"], horizontal=True)
+    sub_cat = st.selectbox("Product Type", ["Shampoo", "Body Wash", "Detergent", "Dishwash", "Others"])
 
 st.divider()
 
-# 4. Camera Feature
-st.subheader("📸 Capture Photo")
-img_file = st.camera_input("Take a photo of the product label or ingredients")
+# Big Camera Button
+st.subheader("📸 STEP 2: Capture Photo")
+photo = st.camera_input("Scan Ingredients")
 
-if img_file:
-    st.success("Photo captured successfully!")
-    
-    with st.expander("📝 Review & Edit Information", expanded=True):
-        brand = st.text_input("Brand")
-        product = st.text_input("Product Name", value=sub_category if sub_category else "")
-        manufacturer = st.text_input("Manufacturer")
-        ingredients = st.text_area("Ingredients")
+if photo:
+    st.success("Photo Ready!")
+    with st.form("data_form"):
+        st.subheader("📝 STEP 3: Verify Details")
+        brand = st.text_input("Brand Name")
+        origin = st.selectbox("Origin", ["Local (Malaysia)", "Import"])
         
-        if st.button("Confirm & Save Data"):
+        # Multi-select for Surfactants
+        surfactants = st.multiselect("Contains:", ["SLS", "SLES", "MES", "CAPB", "LABSA", "Others"])
+        
+        notes = st.text_area("Notes/Remarks")
+        
+        # Large Submit Button
+        submit = st.form_submit_button("SAVE TO CLOUD")
+        
+        if submit:
             st.balloons()
-            st.write("Data recorded! (Next: Connecting to Google Sheets)")
+            st.success("Data Uploaded Successfully!")
