@@ -217,3 +217,24 @@ elif st.session_state.page == 'capture':
             st.success("✓ Saved successfully!")
 
     st.markdown("</div>", unsafe_allow_html=True)
+{
+    "name": "KLK Market Survey",
+    "short_name": "KLK Survey",
+    "description": "KLK Oleo Surfactants Division Market Survey",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#065F46",
+    "icons": [
+        {
+            "src": "KLK_Oleo_Logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "KLK_Oleo_Logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
