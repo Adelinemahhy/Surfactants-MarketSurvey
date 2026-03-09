@@ -1,66 +1,38 @@
 import streamlit as st
-import pandas as pd
-from PIL import Image
 
-# Page Configuration
-st.set_page_config(page_title="KLK Market Survey Tool", page_icon="🧪", layout="centered")
-
-# Custom CSS for a cleaner mobile look
-st.markdown("""
-    <style>
-    .stButton>button { width: 100%; border-radius: 10px; height: 3em; font-weight: bold; }
-    .stSelectbox { margin-bottom: 20px; }
-    </style>
-    """, unsafe_allow_html=True)
+# 1. Page Configuration
+st.set_page_config(page_title="KLK Market Survey", page_icon="🧪")
 
 st.title("🧪 KLK OLEO Market Survey")
-st.info("Automated Data Entry for Surfactants Research")
+st.info("Internship Project: Automated Product Data Entry")
 
-# 1. Primary Category Selection
+# 2. Main Categories
 main_category = st.selectbox("Select Business Segment", ["Personal Care", "Home Care", "Others"])
 
-# 2. Sub-category Logic
+# 3. Sub-categories
 sub_category = ""
 if main_category == "Personal Care":
     sub_category = st.radio("Product Type", ["Shampoo", "Body Wash", "Hand Wash"])
 elif main_category == "Home Care":
     sub_category = st.radio("Product Type", ["Liquid Detergent", "Powder Detergent", "Dishwash Liquid"])
 else:
-    sub_category = st.text_input("Specify Product (e.g., Dry Shampoo, Dishwash Paste)")
+    sub_category = st.text_input("Specify Product (e.g., Dry Shampoo)")
 
 st.divider()
 
-# 3. Camera Input
-st.subheader("📸 Capture Product Image")
-captured_photo = st.camera_input("Take a photo of the ingredients or front label")
+# 4. Camera Feature
+st.subheader("📸 Capture Photo")
+img_file = st.camera_input("Take a photo of the product label or ingredients")
 
-if captured_photo:
+if img_file:
     st.success("Photo captured successfully!")
     
-    # Placeholder for AI OCR Logic (Coming in Step 3)
-    with st.expander("📝 Review & Edit Extracted Data", expanded=True):
+    with st.expander("📝 Review & Edit Information", expanded=True):
         brand = st.text_input("Brand")
-        product_name = st.text_input("Product Name", value=sub_category)
+        product = st.text_input("Product Name", value=sub_category if sub_category else "")
+        manufacturer = st.text_input("Manufacturer")
+        ingredients = st.text_area("Ingredients")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            importer = st.text_input("Importer")
-            manufacturer = st.text_input("Manufacturer")
-            distributor = st.text_input("Distributor")
-        
-        with col2:
-            origin_type = st.selectbox("Local or Import", ["Local", "Import"])
-            country = st.text_input("Country of Origin")
-            
-        ingredients = st.text_area("Ingredients List")
-        
-        # Surfactants Detection (Multi-select)
-        surfactants_list = ["SLS", "SLES", "MES", "CAPB", "LABSA", "CDEA", "Others"]
-        detected = st.multiselect("Detected Surfactants", surfactants_list)
-        
-        notes = st.text_area("Additional Notes")
-
-        # Submit Button
-        if st.button("Save to Database"):
+        if st.button("Confirm & Save Data"):
             st.balloons()
-            st.success("Data synced to cloud! (Connecting to Google Sheets in next step)")
+            st.write("Data recorded! (Next: Connecting to Google Sheets)")
