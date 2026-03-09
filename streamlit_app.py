@@ -1,191 +1,154 @@
 import streamlit as st
 import os
 
-# 1. PAGE CONFIGURATION
+# 1. PAGE SETUP
 st.set_page_config(
-    page_title="Market Survey", 
-    page_icon="KLK Oleo Logo.png", 
+    page_title="KLK Market Survey", 
+    page_icon="icon.png", 
     layout="centered"
 )
 
-# 2. BRANDING & CUSTOM TYPOGRAPHY (Poppins & Aptos)
+# 2. THE ULTIMATE UI DESIGN (CSS)
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap');
 
-    /* Global Typography: Aptos for body, Poppins for headers */
-    html, body, [class*="st-"] {
-        font-family: 'Aptos', 'Segoe UI', Roboto, sans-serif;
-    }
-    h1, h2, h3, .tile-text {
-        font-family: 'Poppins', sans-serif !important;
+    /* 1. Full Screen Green Background */
+    .stApp {
+        background-color: #065F46 !important; /* KLK Deep Green */
     }
 
-    /* Hide Browser & Streamlit UI for "App-like" feel */
+    /* 2. Hide all Streamlit UI clutter */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     .stDeployButton {display:none;}
-    .block-container { padding: 0rem; }
+    .block-container { padding-top: 2rem; }
 
-    /* KLK Deep Green Header Block */
-    .klk-header {
-        background-color: #065F46; 
-        width: 100%;
-        padding: 50px 20px;
-        text-align: center;
-        margin-bottom: 25px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* 3. Typography */
+    .brand-logo {
+        width: 100px;
+        margin-left: 20px;
     }
-    .klk-header h1 {
+    .main-title {
+        font-family: 'Poppins', sans-serif;
         color: #FFFFFF;
-        font-size: 32px;
-        margin: 0;
-        text-transform: uppercase;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
         letter-spacing: 1px;
-    }
-    .klk-header p {
-        color: #A7F3D0;
-        font-size: 14px;
-        margin-top: 5px;
-        font-style: italic;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
     }
 
-    /* Home Screen Tiles (The 3 Big Buttons) */
-    .tile-container {
-        padding: 0 25px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    /* Specific styling for the 3 Entry Tiles */
-    .stButton > button {
+    /* 4. The Pill Buttons (Large & Rounded) */
+    div.stButton > button {
         width: 100%;
-        border-radius: 20px;
+        height: 140px !important; /* Extra large for thumb tapping */
+        border-radius: 70px !important; /* Perfect Pill Shape */
+        border: none !important;
+        background-color: #D1DED8 !important; /* Soft Light Grey-Green from your draft */
+        color: #065F46 !important; /* Text color matches background */
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         transition: 0.3s ease;
+        margin-bottom: 10px;
     }
     
-    .home-tile button {
-        height: 120px !important;
+    div.stButton > button:hover {
         background-color: #FFFFFF !important;
-        border: 1.5px solid #E5E7EB !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
-        font-family: 'Poppins', sans-serif !important;
-        font-size: 20px !important;
-        color: #065F46 !important;
-    }
-    .home-tile button:hover {
-        background-color: #065F46 !important;
-        color: #FFFFFF !important;
-        border-color: #065F46 !important;
-        transform: translateY(-3px);
+        transform: scale(1.02);
     }
 
-    /* Back Button Styling (Minimalist) */
-    .back-btn-container {
-        padding: 15px 25px 0 25px;
-    }
+    /* 5. Back Button (Capture Page) */
     .back-btn button {
-        background-color: transparent !important;
-        border: none !important;
-        color: #6B7280 !important;
-        text-decoration: underline !important;
-        font-size: 15px !important;
-        padding: 0 !important;
         height: auto !important;
+        width: auto !important;
+        background: transparent !important;
+        color: #FFFFFF !important;
+        text-decoration: underline !important;
+        font-size: 16px !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
     }
-
-    /* Page Content Padding */
-    .page-content { padding: 0 25px; }
+    
+    /* 6. Form Styling (Capture Page) */
+    .stTextInput input {
+        border-radius: 15px !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. STATE MANAGEMENT (Page Navigation)
+# 3. APP LOGIC & STATE
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
-if 'selected_cat' not in st.session_state:
-    st.session_state.selected_cat = None
 
-# --- PAGE A: HOME (The 3 Tiles) ---
+# --- PAGE A: HOME SCREEN (Matches your Draft) ---
 if st.session_state.page == 'home':
-    st.markdown("""
-        <div class="klk-header">
-            <h1>MARKET SURVEY</h1>
-            <p>KLK OLEO • SURFACTANTS MARKET SURVEY</p>
-        </div>
-        """, unsafe_allow_html=True)
+    # Logo Placeholder
+    if os.path.exists("logo.png"):
+        st.image("logo.png", width=80)
+    else:
+        st.markdown("<p style='color:white; margin-left:25px; font-weight:bold;'>KLK OLEO</p>", unsafe_allow_html=True)
     
-    st.markdown("<div class='tile-container'>", unsafe_allow_html=True)
-    st.write("### 📂 Choose Segment")
+    st.markdown("<h1 class='main-title'>MARKET SURVEY</h1>", unsafe_allow_html=True)
     
-    with st.container():
-        st.markdown('<div class="home-tile">', unsafe_allow_html=True)
-        if st.button("🧴 PERSONAL CARE", key="btn_pc"):
-            st.session_state.selected_cat = "Personal Care"
-            st.session_state.page = 'capture'
-            st.rerun()
-            
-        if st.button("🏠 HOME CARE", key="btn_hc"):
-            st.session_state.selected_cat = "Home Care"
-            st.session_state.page = 'capture'
-            st.rerun()
-            
-        if st.button("🧩 OTHERS", key="btn_ot"):
-            st.session_state.selected_cat = "Others"
-            st.session_state.page = 'capture'
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
+    # Large Pill Buttons
+    st.markdown("<div style='padding: 0 30px;'>", unsafe_allow_html=True)
+    
+    if st.button("PERSONAL CARE"):
+        st.session_state.category = "Personal Care"
+        st.session_state.page = 'capture'
+        st.rerun()
 
-# --- PAGE B: CAPTURE PAGE (Drawer-style entry) ---
+    if st.button("HOME CARE"):
+        st.session_state.category = "Home Care"
+        st.session_state.page = 'capture'
+        st.rerun()
+
+    if st.button("OTHERS"):
+        st.session_state.category = "Others"
+        st.session_state.page = 'capture'
+        st.rerun()
+        
+    st.markdown("</div>", unsafe_allow_html=True)
+    
+    # Bottom Subtext
+    st.markdown("<p style='text-align:center; color:#A7F3D0; font-size:10px; margin-top:50px; opacity:0.6;'>SURFACTANTS DIVISION</p>", unsafe_allow_html=True)
+
+# --- PAGE B: CAPTURE PAGE ---
 elif st.session_state.page == 'capture':
-    # Top Back Button
-    st.markdown('<div class="back-btn-container">', unsafe_allow_html=True)
-    if st.button("← Back to Categories", key="back_btn"):
+    # Back button at the top
+    if st.button("← Back to Categories", key="back"):
         st.session_state.page = 'home'
         st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown(f"<h2 style='color:#065F46; text-align:center; font-family:Poppins;'>{st.session_state.selected_cat}</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='color:white; text-align:center;'>{st.session_state.category}</h2>", unsafe_allow_html=True)
     
-    st.markdown("<div class='page-content'>", unsafe_allow_html=True)
-    st.divider()
-
-    # MULTI-PHOTO SECTION (Front & Back Required)
-    st.subheader("📸 Step 1: Photos")
-    st.caption("Capture at least 2 photos (Front & Back/Ingredients)")
-    
-    c1, c2 = st.columns(2)
-    with c1:
-        photo_front = st.camera_input("Front (Brand)")
-    with c2:
-        photo_back = st.camera_input("Back (Ingredients)")
-    
-    # Extra Photo Expander (For curved bottles/Side labels)
-    with st.expander("➕ Add more angles? (Side/Details)"):
-        photo_extra = st.camera_input("Extra Detail Photo")
-
-    if photo_front and photo_back:
-        st.success("Core images ready!")
+    with st.container():
+        st.markdown("<div style='background:white; padding:20px; border-radius:30px; margin: 0 10px;'>", unsafe_allow_html=True)
         
-        st.subheader("📝 Step 2: Data Entry")
-        brand = st.text_input("Brand", placeholder="e.g. KLK Choice")
-        p_name = st.text_input("Product Name", placeholder="e.g. Shower Gel 500ml")
-        
-        # Surfactant List based on Business Intelligence requirements
-        surfactant_list = ["SLS", "SLES", "MES", "CAPB", "LABSA", "CDEA", "Others"]
-        selected_surfactants = st.multiselect("Contains Surfactants:", surfactant_list)
-        
-        notes = st.text_area("Additional Remarks (Price, Volume, etc.)")
+        st.subheader("📸 Step 1: Scan")
+        c1, c2 = st.columns(2)
+        with c1:
+            photo1 = st.camera_input("Front View")
+        with c2:
+            photo2 = st.camera_input("Back View")
+            
+        with st.expander("➕ Extra Angle"):
+            photo3 = st.camera_input("Side View")
 
-        # Submission Button
-        if st.button("🚀 SAVE TO CLOUD", use_container_width=True):
+        st.subheader("📝 Step 2: Info")
+        brand = st.text_input("Brand Name")
+        notes = st.text_area("Observations")
+
+        if st.button("🚀 SUBMIT DATA"):
             st.balloons()
-            st.toast("Recording data to KLK central database...", icon="☁️")
-            # GOOGLE SHEETS CONNECTION LOGIC GOES HERE
-    
-    st.markdown("</div>", unsafe_allow_html=True)
-
-# 5. CORPORATE FOOTER
-st.markdown("<br><p style='text-align:center; color:#9CA3AF; font-family:Aptos; font-size:10px;'>SURFACTANTS • ADELINE MAH</p>", unsafe_allow_html=True)
+            st.success("Saved to Cloud!")
+            # Future Google Sheets Sync Here
+        
+        st.markdown("</div>", unsafe_allow_html=True)
