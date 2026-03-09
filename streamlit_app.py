@@ -21,7 +21,7 @@ if os.path.exists("KLKOLEO Logo"):
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="KLK Survey">
         <link rel="apple-touch-icon" href="data:image/png;base64,{_icon_b64}">
-        <meta name="theme-color" content="#065F46">
+        <meta name="theme-color" content="#016836">
     """, unsafe_allow_html=True)
 
 st.markdown("""
@@ -29,7 +29,7 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
     html, body, .stApp {
-        background-color: #FFFFFF !important;
+        background-color: #016836 !important;
         font-family: 'DM Sans', sans-serif !important;
     }
 
@@ -46,7 +46,7 @@ st.markdown("""
 
     /* Logo banner */
     .logo-banner {
-        background-color: #065F46;
+        background-color: #016836;
         border-radius: 0 0 20px 20px;
         padding: 28px 32px 22px 32px;
         text-align: center;
@@ -69,7 +69,7 @@ st.markdown("""
         text-align: center;
         font-size: 22px;
         font-weight: 700;
-        color: #065F46;
+        color: #016836;
         margin-bottom: 4px;
         padding: 0 20px;
     }
@@ -91,7 +91,7 @@ st.markdown("""
         height: 60px !important;
         border-radius: 50px !important;
         border: none !important;
-        background-color: #065F46 !important;
+        background-color: #016836 !important;
         color: #FFFFFF !important;
         font-family: 'DM Sans', sans-serif !important;
         font-size: 14px !important;
@@ -109,12 +109,12 @@ st.markdown("""
     .stCameraInput > label {
         font-family: 'DM Sans', sans-serif !important;
         font-size: 12px !important;
-        color: #6B7280 !important;
+        color: #016836 !important;
     }
 
     .streamlit-expanderHeader {
         font-family: 'DM Sans', sans-serif !important;
-        color: #065F46 !important;
+        color: #016836 !important;
     }
     .stSuccess { border-radius: 12px !important; }
     [data-testid="column"] { padding: 0 5px !important; }
