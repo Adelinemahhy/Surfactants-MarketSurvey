@@ -139,7 +139,7 @@ if 'category' not in st.session_state:
     st.session_state.category = ''
 
 # ── LOGO BANNER ──
-logo_path = "KLK_Oleo_Logo.png"
+logo_path = "KLKOLEO Logo"
 if os.path.exists(logo_path):
     logo_b64 = img_to_base64(logo_path)
     st.markdown(f"""
