@@ -118,7 +118,7 @@ if st.session_state.page == 'home':
     st.markdown("</div>", unsafe_allow_html=True)
     
     # Bottom Subtext
-    st.markdown("<p style='text-align:center; color:#A7F3D0; font-size:10px; margin-top:50px; opacity:0.6;'>SURFACTANTS DIVISION</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center; color:#A7F3D0; font-size:10px; margin-top:50px; opacity:0.6;'>SURFACTANTS | ADELINE MAH</p>", unsafe_allow_html=True)
 
 # --- PAGE B: CAPTURE PAGE ---
 elif st.session_state.page == 'capture':
