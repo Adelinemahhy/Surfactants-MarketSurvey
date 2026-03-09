@@ -227,12 +227,12 @@ elif st.session_state.page == 'capture':
     "theme_color": "#065F46",
     "icons": [
         {
-            "src": "KLK_Oleo_Logo.png",
+            "src": "KLKOLEO Logo",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "KLK_Oleo_Logo.png",
+            "src": "KLKOLEO Logo",
             "sizes": "512x512",
             "type": "image/png"
         }
