@@ -112,7 +112,7 @@ if st.session_state.page == 'home':
     st.markdown("""
         <div class="klk-header">
             <h1>MARKET SURVEY</h1>
-            <p>KLK OLEO • Market Intelligence Portal</p>
+            <p>KLK OLEO • SURFACTANTS MARKET SURVEY</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -188,4 +188,4 @@ elif st.session_state.page == 'capture':
     st.markdown("</div>", unsafe_allow_html=True)
 
 # 5. CORPORATE FOOTER
-st.markdown("<br><p style='text-align:center; color:#9CA3AF; font-family:Aptos; font-size:10px;'>CONFIDENTIAL • KLK OLEO BI TEAM</p>", unsafe_allow_html=True)
+st.markdown("<br><p style='text-align:center; color:#9CA3AF; font-family:Aptos; font-size:10px;'>SURFACTANTS • ADELINE MAH</p>", unsafe_allow_html=True)
